@@ -1,0 +1,56 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<conio.h>
+struct node
+{ char name[20];
+int marks;
+node *next;
+};
+class stack
+{ node *top;
+public:
+stack()
+{top=NULL;} void push(); void pop();void display();
+~stack(); };
+void stack::push()			
+{
+node *temp;
+temp=new node;
+gets(temp->name); 
+cin>>temp->marks;
+temp->next=top;
+top=temp; }
+void stack::pop()			
+{ if(top==NULL)
+cout<<"Underflow!!Stack is empty\n";
+else
+{ node *temp; temp=top;
+top=top->next;
+delete(temp); }  }
+void stack::display()			
+{  if(top==NULL)
+cout<<"Stack is empty\n";
+else
+{
+node *temp;
+temp=top;
+while(temp!=NULL)
+{  cout<<temp->name;
+cout<<temp->marks;
+temp=temp->next; } } }
+stack::~stack()			
+{ node *temp;
+while(top!=NULL)
+{ temp=top; top=top->next; delete(temp); } }
+void main()
+{  stack s; int ch;
+do
+{  cout<<"1.PUSH\n2.POP\n3.DISPLAY\n4.QUIT\n";
+ch=getch();
+switch(ch)
+{ case 1: s.push();break;
+case 2: s.pop();break;
+case 3: s.display();break;
+case 4: break;
+default:cout<<"Wrong Choice";} }
+while(ch!=4);  }
